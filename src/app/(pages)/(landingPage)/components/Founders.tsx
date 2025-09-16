@@ -53,7 +53,7 @@ const Founders = () => {
       ref={foundersRef}
       className="flex flex-col items-center justify-center min-h-screen p-4"
     >
-      <div className="grid md:grid-cols-4 grid-cols-2 gap-0 pt-2 ">
+      <div className="grid md:grid-cols-4 grid-cols-2 gap-2 pt-2 ">
         {displayStats.map((stat) => (
           <motion.div
             key={stat.id}
