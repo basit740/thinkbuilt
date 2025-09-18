@@ -9,8 +9,8 @@ export interface IProject extends Document {
   project_overview: string;
   technology_used: { tech_name: string }[];
   pages_images_urls: string[];
+  project_concept_name: string;
   project_concepts: {
-    concept: string;
     start_title: string;
     start_desc: string;
     end_title: string;
@@ -19,6 +19,10 @@ export interface IProject extends Document {
   second_thumbnail_url: string;
   key_feature: string;
   the_results: { value: string; desc: string }[];
+  company_logo_url: string;
+  client_comment: string;
+  client_company_name: string;
+  time_duration: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -64,12 +68,12 @@ const projectSchema = new Schema<IProject>(
       type: String,
       trim: true,
     }],
+    project_concept_name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     project_concepts: [{
-      concept: {
-        type: String,
-        required: true,
-        trim: true,
-      },
       start_title: {
         type: String,
         required: true,
@@ -109,6 +113,25 @@ const projectSchema = new Schema<IProject>(
         required: true,
       },
     }],
+    company_logo_url: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    client_comment: {
+      type: String,
+      required: true,
+    },
+    client_company_name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    time_duration: {
+      type: String,
+      required: true,
+      trim: true,
+    },
   },
   {
     timestamps: true,

@@ -1,4 +1,4 @@
-import ProjectCard from "@/app/components/common/ProjectCard";
+// import ProjectCard from "@/app/components/common/ProjectCard";
 import Image from "next/image";
 import React from "react";
 
@@ -37,11 +37,11 @@ const CaseStudy = () => {
       </div>
 
       {/* Project Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[21px] justify-items-center max-w-[1280px] mx-auto">
-        {[1, 2].map((i) => (
+      {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-[21px] justify-items-center max-w-[1280px] mx-auto">
+        {[1, 2].map((index) => (
           <ProjectCard key={i} />
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };

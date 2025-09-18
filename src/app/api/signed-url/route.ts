@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     const extension = getExtension(mimeType);
 
     // Generate unique file path
-    const filePath = `${randomUUID()}.${extension}`;
+    const filePath = `tbs/${randomUUID()}.${extension}`;
 
     // Create put object command
     const command = new PutObjectCommand({

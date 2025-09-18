@@ -73,8 +73,8 @@ export async function POST(request: NextRequest) {
     const requiredFields = [
       'project_name', 'project_summary', 'client_name', 'completion_date',
       'thumbnail_image_url', 'project_overview', 'technology_used',
-      'pages_images_urls', 'project_concepts', 'second_thumbnail_url',
-      'key_feature', 'the_results'
+      'pages_images_urls', 'project_concept_name', 'project_concepts', 'second_thumbnail_url',
+      'key_feature', 'the_results', 'company_logo_url', 'client_comment', 'client_company_name', 'time_duration'
     ];
 
     for (const field of requiredFields) {

@@ -368,6 +368,8 @@ export default function AdminReviews() {
                     <Image
                       src={editingReview.companyLogoUrl}
                       alt="current logo"
+                      width={96}
+                      height={96}
                       className="max-w-full h-24 object-cover mx-auto rounded"
                     />
                   ) : (
@@ -460,6 +462,8 @@ export default function AdminReviews() {
                     <Image
                       src={editingReview.founderImageUrl}
                       alt="current founder image"
+                      width={96}
+                      height={96}
                       className="max-w-full h-24 object-cover mx-auto rounded"
                     />
                   ) : (

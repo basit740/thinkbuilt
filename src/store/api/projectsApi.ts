@@ -10,8 +10,8 @@ interface Project {
   project_overview: string;
   technology_used: { tech_name: string }[];
   pages_images_urls: string[];
+  project_concept_name: string;
   project_concepts: {
-    concept: string;
     start_title: string;
     start_desc: string;
     end_title: string;
@@ -20,6 +20,10 @@ interface Project {
   second_thumbnail_url: string;
   key_feature: string;
   the_results: { value: string; desc: string }[];
+  company_logo_url: string;
+  client_comment: string;
+  client_company_name: string;
+  time_duration: string;
   createdAt: string;
   updatedAt: string;
 }
