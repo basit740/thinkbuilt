@@ -9,7 +9,12 @@ import toast from "react-hot-toast";
 const Projects = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(9); // Show 9 projects initially (3x3 grid)
-  const { data: projectsData, isLoading, error, isFetching } = useGetProjectsQuery({
+  const {
+    data: projectsData,
+    isLoading,
+    error,
+    isFetching,
+  } = useGetProjectsQuery({
     page,
     limit,
   });
@@ -26,22 +31,21 @@ const Projects = () => {
 
   const handleLoadMore = () => {
     if (hasMore && !isFetching) {
-      setPage(prev => prev + 1);
+      setPage((prev) => prev + 1);
     }
   };
 
   if (isLoading && page === 1) {
     return (
-      <div className="flex flex-col justify-center items-center px-6 md:px-16 xl:px-[90px] pt-[70.61px] pb-[99.9px] gap-[55.36px]">
-        <div className="gap-[21px] grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-center items-center">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="animate-pulse">
-              <div className="py-[15.26px] px-[14.3px] rounded-[18.91px] flex justify-center items-center bg-[#26201E] w-full max-w-[622px] mx-auto">
-                <div className="rounded-[20px] h-[434.12px] w-full max-w-[591.4px] bg-gray-700"></div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="gap-[21px] grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-center items-center px-6 md:px-16 xl:px-[90px] pt-[70.61px] pb-[99.9px]">
+        {[1, 2, 3].map((index) => (
+          <div
+            key={index}
+            className="py-[15.26px] px-[14.3px] rounded-[18.91px] flex justify-start items-start bg-[#26201E] w-full max-w-[622px]"
+          >
+            <div className="rounded-[20px] flex justify-center items-end h-[434.12px] w-full max-w-[591.4px] p-[10px]" />
+          </div>
+        ))}
       </div>
     );
   }
@@ -51,7 +55,9 @@ const Projects = () => {
     return (
       <div className="flex flex-col justify-center items-center px-6 md:px-16 xl:px-[90px] pt-[70.61px] pb-[99.9px] gap-[55.36px]">
         <div className="text-center">
-          <p className="text-red-500 mb-4">Failed to load projects. Please try again later.</p>
+          <p className="text-red-500 mb-4">
+            Failed to load projects. Please try again later.
+          </p>
           <Button
             type="button"
             title="Retry"

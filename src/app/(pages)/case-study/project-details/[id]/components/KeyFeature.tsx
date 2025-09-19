@@ -1,6 +1,15 @@
 import React from "react";
 
-const KeyFeature = () => {
+interface Project {
+  _id: string;
+  key_feature: string;
+}
+
+interface KeyFeatureProps {
+  project: Project;
+}
+
+const KeyFeature = ({ project }: KeyFeatureProps) => {
   return (
     <section className="px-4  xl:px-[69px]">
       <div
@@ -24,15 +33,14 @@ const KeyFeature = () => {
           <div className="flex flex-col gap-[31px] items-center justify-center">
             <h5
               className="bg-[linear-gradient(180deg,#FFFFFF_2.39%,rgba(255,255,255,0.46)_143.39%)]
-         bg-clip-text text-transparent
-         text-[48.695px] font-bold leading-[53.978px] text-left w-full
-        "
+          bg-clip-text text-transparent
+          text-[48.695px] font-bold leading-[53.978px] text-left w-full
+         "
             >
               Key Feature
             </h5>
             <p className="max-w-sm">
-              With Sienna, a photographer’s portfolio is more than just a
-              gallery—it’s an artistic journey that captivates and inspires.
+              {project.key_feature}
             </p>
           </div>
         </div>

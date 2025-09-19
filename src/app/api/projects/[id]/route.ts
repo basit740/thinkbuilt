@@ -4,20 +4,12 @@ import Project from "@/models/project";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 
-// GET /api/projects/[id] - Get single project (admin only)
+// GET /api/projects/[id] - Get single project (public)
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "admin") {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
-
     await connect();
     const { id: projectId } = await params;
 

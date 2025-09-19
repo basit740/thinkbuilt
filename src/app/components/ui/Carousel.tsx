@@ -31,7 +31,7 @@ const Carousel = ({ images }: { images: string[] }) => {
                 alt={`Carousel image ${index + 1}`}
                 width={617.743}
                 height={713.17}
-                className="w-full h-[300px] md:h-[500px] xl:h-[713px] object-cover rounded-[25px]"
+                className="w-full h-[300px] md:h-[500px] xl:h-[713px] object-cover rounded-[25px] object-top"
               />
             </div>
           ))}

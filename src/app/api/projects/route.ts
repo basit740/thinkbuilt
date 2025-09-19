@@ -4,17 +4,9 @@ import Project from "@/models/project";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 
-// GET /api/projects - Get all projects (admin only)
+// GET /api/projects - Get all projects (public)
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "admin") {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
-
     await connect();
 
     const { searchParams } = new URL(request.url);

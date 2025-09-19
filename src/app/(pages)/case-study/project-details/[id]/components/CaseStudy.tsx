@@ -1,8 +1,18 @@
-// import ProjectCard from "@/app/components/common/ProjectCard";
+import ProjectCard from "@/app/components/common/ProjectCard";
 import Image from "next/image";
 import React from "react";
+import { useParams } from "next/navigation";
+import { useGetProjectsQuery } from "@/store/api/projectsApi";
 
 const CaseStudy = () => {
+  const params = useParams();
+  const id = params.id as string;
+
+  const { data: projectsData } = useGetProjectsQuery({ page: 1, limit: 100 });
+  const projects = projectsData?.projects || [];
+  const filteredProjects = projects.filter(project => project._id !== id);
+  const randomProjects = filteredProjects.sort(() => 0.5 - Math.random()).slice(0, 2);
+
   return (
     <section className="px-4 md:px-16 xl:px-[90px] pb-[76px] flex flex-col gap-10">
       <div className="w-full flex flex-col items-center">
@@ -37,11 +47,11 @@ const CaseStudy = () => {
       </div>
 
       {/* Project Cards */}
-      {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-[21px] justify-items-center max-w-[1280px] mx-auto">
-        {[1, 2].map((index) => (
-          <ProjectCard key={i} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[21px] justify-items-center max-w-[1280px] mx-auto">
+        {randomProjects.map((project) => (
+          <ProjectCard key={project._id} project={project} />
         ))}
-      </div> */}
+      </div>
     </section>
   );
 };
