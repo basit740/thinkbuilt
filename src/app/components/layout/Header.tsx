@@ -11,6 +11,11 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const handleScroll = (e: any, href: any) => {
+    // Only handle scroll behavior for hash links (#)
+    if (!href.startsWith("#")) {
+      return; // Let Next.js Link handle navigation for non-hash links
+    }
+
     e.preventDefault();
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);

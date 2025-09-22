@@ -5,6 +5,7 @@ import Button from "@/app/components/ui/Button";
 import React, { useState, useEffect } from "react";
 import { useGetProjectsQuery } from "@/store/api/projectsApi";
 import toast from "react-hot-toast";
+import { motion } from "motion/react";
 
 const Projects = () => {
   const [page, setPage] = useState(1);
@@ -81,9 +82,21 @@ const Projects = () => {
 
   return (
     <div className="flex flex-col justify-center items-center px-6 md:px-16 xl:px-[90px] pt-[70.61px] pb-[99.9px] gap-[55.36px]">
-      <div className="gap-[21px] grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-center items-center">
-        {projects.map((project) => (
-          <ProjectCard key={project._id} project={project} />
+      <div className="w-full gap-[21px] grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-center items-center">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project._id}
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: index * 0.1
+            }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <ProjectCard project={project} />
+          </motion.div>
         ))}
       </div>
       {hasMore && (

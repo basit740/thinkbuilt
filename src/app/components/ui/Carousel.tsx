@@ -2,6 +2,7 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
+import { motion } from "motion/react";
 
 const Carousel = ({ images }: { images: string[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -22,9 +23,17 @@ const Carousel = ({ images }: { images: string[] }) => {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex gap-[25px]">
           {images.map((src, index) => (
-            <div
+            <motion.div
               className="relative flex-[0_0_calc(50%-12.5px)] min-w-0"
               key={index}
+              initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                duration: 0.6,
+                ease: "easeOut",
+                delay: (index % 2) * 0.2
+              }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <Image
                 src={src}
@@ -33,7 +42,7 @@ const Carousel = ({ images }: { images: string[] }) => {
                 height={713.17}
                 className="w-full h-[300px] md:h-[500px] xl:h-[713px] object-cover rounded-[25px] object-top"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -166,7 +166,7 @@ const Clarity = () => {
               }}
             >
               <Image
-                src="/images/clarity_layer_1.png"
+                src="/images/clarity_layer_1.webp"
                 alt="Main Clarity Session"
                 width={418}
                 height={436}

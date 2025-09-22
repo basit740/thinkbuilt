@@ -5,6 +5,7 @@ export const NAV_LINKS = [
   { href: "#our-story", key: "Our Story", label: "Our Story" },
   { href: "#testimonials", key: "Testimonials", label: "Testimonials" },
   { href: "#why-us", key: "Why Choose Us", label: "Why Choose Us" },
+  { href: "case-study", key: "Case Study", label: "Case Study" },
 ];
 
 // CAMP SECTION
@@ -84,7 +85,7 @@ export const PEOPLE_URL = [
 
 export const Images = [
   {
-    src: "/images/Container.png",
+    src: "/images/vision_img_1.webp",
     alt: "Vector",
     width: 820,
     height: 409,
@@ -105,7 +106,7 @@ export const Images = [
     className: "w-[600] h-[409]",
   },
   {
-    src: "/images/Background_4.png",
+    src: "/images/vision_img_2.webp",
     alt: "Vector",
     width: 662,
     height: 409,
@@ -310,7 +311,7 @@ export const profiles = [
   {
     id: 1,
     mainImage: {
-      src: "/images/basit.png",
+      src: "/images/basit.webp",
       alt: "Basit",
       width: 417,
       height: 589,

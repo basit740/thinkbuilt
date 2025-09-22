@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { motion } from "motion/react";
 
 const Approach = () => {
   const approachData = [
@@ -30,22 +31,34 @@ const Approach = () => {
   ];
   return (
     <section className="px-4 md:px-16 xl:px-[90px] py-[120px] flex flex-col gap-[55px]">
-      <div className="flex gap-1.5">
-        <Image
-          src="/icons/flower_icon.svg"
-          alt="flower-icon"
-          width={20}
-          height={20}
-        />
+      <motion.div
+        className="flex gap-1.5 items-center"
+        initial={{ y: -30, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+          className="h-5 w-5"
+        >
+          <Image
+            src="/icons/flower_icon.svg"
+            alt="flower-icon"
+            width={20}
+            height={20}
+          />
+        </motion.div>
         <h4 className="text-[34px] font-bold leading-[56px]">
           Our <span className="text-[#1D9ED9]">Approach</span>
         </h4>
-      </div>
+      </motion.div>
 
       <div className="flex flex-row gap-3 flex-wrap">
         {approachData.map((item, index) => {
           return (
-            <div
+            <motion.div
               key={index}
               className="
       h-[403.03px] w-[295.199px] rounded-[18px] flex justify-center items-center flex-col
@@ -56,6 +69,14 @@ const Approach = () => {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 0.6,
+                ease: "easeOut",
+                delay: index * 0.2
+              }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <Image
                 src={`${item.icon}`}
@@ -80,7 +101,7 @@ const Approach = () => {
               <p className="text-lg font-normal leading-[26px] max-w-48 text-center">
                 {item.desc}
               </p>
-            </div>
+            </motion.div>
           );
         })}
       </div>

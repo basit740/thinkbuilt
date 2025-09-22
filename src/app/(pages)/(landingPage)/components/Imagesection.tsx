@@ -152,7 +152,7 @@ const Imagesection = () => {
 
               <div className="absolute inset-0 w-full h-full hidden sm:block">
                 <Image
-                  src="/images/Background_8.png"
+                  src="/images/vision_img_3.webp"
                   alt="Background Image"
                   width={660}
                   height={409}

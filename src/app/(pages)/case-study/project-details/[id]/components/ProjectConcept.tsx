@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { motion } from "motion/react";
 
 interface ProjectConcept {
   start_title: string;
@@ -29,15 +30,21 @@ const ProjectConcept = ({ project }: ProjectConceptProps) => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex gap-1.5">
-        <Image
-          src="/icons/flower_icon.svg"
-          alt="flower-icon"
-          width={20}
-          height={20}
-        />
+      <div className="flex gap-1.5 items-center">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+          className="h-5 w-5"
+        >
+          <Image
+            src="/icons/flower_icon.svg"
+            alt="flower-icon"
+            width={20}
+            height={20}
+          />
+        </motion.div>
         <h4 className="text-[34px] font-bold leading-[56px]">
-          {project.project_concept_name || "Problem &"} <span className="text-[#1D9ED9]">Solution</span>
+          {project.project_concept_name || "Problem & Solutions"}
         </h4>
       </div>
 
@@ -50,7 +57,7 @@ const ProjectConcept = ({ project }: ProjectConceptProps) => {
                 <h6 className="text-3xl font-bold text-[#1D9ED9] leading-[38.955px]">
                   {concept.start_title}
                 </h6>
-                <p className="max-w-sm 2xl:max-w-lg text-xl font-normal leading-[33.6px] text-white">
+                <p className="max-w-sm text-xl font-normal leading-[33.6px] text-white">
                   {concept.start_desc}
                 </p>
               </div>
@@ -72,7 +79,7 @@ const ProjectConcept = ({ project }: ProjectConceptProps) => {
                 alt="wave-icon"
                 height={108}
                 width={300}
-                className="w-[300px] h-[108px]"
+                className="w-full max-w-[300px] h-full max-h-[108px]"
               />
               <div className="flex flex-col h-auto justify-center">
                 <Image
@@ -91,7 +98,7 @@ const ProjectConcept = ({ project }: ProjectConceptProps) => {
                 <h6 className="text-3xl font-bold text-[#1D9ED9] leading-[38.955px]">
                   {concept.end_title}
                 </h6>
-                <p className="max-w-sm 2xl:max-w-lg text-xl font-normal leading-[33.6px] text-white">
+                <p className="max-w-sm text-xl font-normal leading-[33.6px] text-white">
                   {concept.end_desc}
                 </p>
               </div>

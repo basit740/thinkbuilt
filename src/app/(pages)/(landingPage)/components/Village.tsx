@@ -41,7 +41,7 @@ const Village = () => {
                 className="relative h-[410px] w-[275px] md:h-[500px] md:w-[360px] rounded-[24px] overflow-visible"
               >
                 <Image
-                  src="/images/basit.png"
+                  src="/images/basit.webp"
                   alt="Basit Ali"
                   fill
                   className="object-cover object-top translate-y-[-80px]"

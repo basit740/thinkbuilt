@@ -8,7 +8,7 @@ const page = () => {
     <>
       <div className="relative h-[655px] flex justify-center items-center">
         <Image
-          src="/images/case_study_hero_bg.png"
+          src="/images/case_study_hero_bg.webp"
           alt="hero-background"
           fill
           priority

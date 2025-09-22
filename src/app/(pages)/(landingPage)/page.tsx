@@ -29,7 +29,7 @@ export default function Home() {
       <div
         className="z-50"
         style={{
-          backgroundImage: " url('/images/Bg.jpg')",
+          backgroundImage: " url('/images/founders_bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
