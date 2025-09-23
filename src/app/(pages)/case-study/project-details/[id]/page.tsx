@@ -43,7 +43,7 @@ const ProjectDetailsPage = () => {
   }
 
   return (
-    <div className="pb-[76px] pt-[179.7px]">
+    <div className="pb-[76px] pt-32 lg:pt-[179.7px]">
       <ProjectSummary project={project} />
       <ProjectOverview project={project} />
       <ProjectConcept project={project} />
@@ -60,12 +60,12 @@ export default ProjectDetailsPage;
 // Skeleton Components
 const ProjectSummarySkeleton = () => (
   <section className="flex flex-col gap-[45px] px-4 md:px-16 xl:px-[90px]">
-    <div className="w-full flex justify-between text-white">
-      <div className="flex flex-col gap-2.5">
+    <div className="w-full flex flex-col lg:flex-row justify-between text-white">
+      <div className="flex flex-col gap-2.5 mb-12 text-center justify-center items-center">
         <div className="h-12 bg-gray-700 rounded animate-pulse w-64"></div>
-        <div className="h-6 bg-gray-700 rounded animate-pulse w-96"></div>
+        <div className="h-6 bg-gray-700 rounded animate-pulse w-80"></div>
       </div>
-      <div className="flex flex-col gap-4 w-[344px] text-base">
+      <div className="flex flex-col gap-4 w-[344px] text-base mx-auto lg:mx-0">
         <div className="flex justify-between">
           <div className="h-4 bg-gray-700 rounded animate-pulse w-16"></div>
           <div className="h-4 bg-gray-700 rounded animate-pulse w-32"></div>

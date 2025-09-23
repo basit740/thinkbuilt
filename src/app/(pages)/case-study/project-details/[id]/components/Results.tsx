@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 interface ProjectResult {
   value: string;
@@ -20,10 +20,18 @@ interface ResultsProps {
 }
 
 const Results = ({ project }: ResultsProps) => {
+  const [isMobile, setIsMobile] = useState(false);
   const bgColors = ["#CBDEFD", "#FFD3FA", "#B4F8BC"];
 
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
-    <section className="px-4 md:px-16 xl:px-[78px]  pb-[140px] pt-[123px] flex flex-col">
+    <section className="px-4 md:px-16 xl:px-[78px] py-20 lg:pb-[140px] lg:pt-[123px] flex flex-col">
       <motion.div
         className="flex gap-1.5 items-center"
         initial={{ y: -30, opacity: 0 }}
@@ -49,28 +57,28 @@ const Results = ({ project }: ResultsProps) => {
       </motion.div>
 
       {/* Result Cards */}
-      <div className="mt-[47px] mb-8 gap-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-[47px] mb-8 gap-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
         {project.the_results.map((result, index) => {
           const bgColor = bgColors[index % bgColors.length];
           return (
             <motion.div
               key={index}
-              className="py-16 px-[24px] rounded-[25.71px] flex justify-center items-center"
+              className="py-8 lg:py-16 px-[24px] rounded-[25.71px] flex justify-center items-center"
               style={{ backgroundColor: bgColor }}
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{
                 duration: 0.6,
                 ease: "easeOut",
-                delay: index * 0.2
+                delay: index * 0.2,
               }}
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="flex flex-col text-center">
-                <p className="text-[64px] font-normal leading-[65.101px] tracking-[-4.069px] text-black">
+                <p className="text-5xl lg:text-[64px] font-normal leading-[65.101px] tracking-[-4.069px] text-black">
                   {result.value}
                 </p>
-                <p className="text-[26px] font-normal leading-[48.826px] text-black/80">
+                <p className="text-xl lg:text-[26px] font-normal leading-[48.826px] text-black/80">
                   {result.desc}
                 </p>
               </div>
@@ -80,7 +88,7 @@ const Results = ({ project }: ResultsProps) => {
       </div>
 
       <motion.div
-        className="w-full rounded-[25.71px] border border-white/69 flex flex-col gap-[27px] px-[55px] items-center justify-start py-[38px]"
+        className="w-full rounded-[25.71px] border border-white/69 flex flex-col gap-[27px] px-8 lg:px-[55px] items-center justify-start py-[38px]"
         style={{
           backgroundImage: " url('/images/comment_bg.png')",
           backgroundSize: "cover",
@@ -93,7 +101,7 @@ const Results = ({ project }: ResultsProps) => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <motion.div
-          className="flex w-full items-start"
+          className="flex w-full justify-center md:justify-start lg:items-start"
           initial={{ y: -30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
@@ -104,14 +112,16 @@ const Results = ({ project }: ResultsProps) => {
             alt="company-logo"
             width={150}
             height={150}
+            className="w-24 h-24 lg:w-[120px] lg:w:[120px]"
           />
         </motion.div>
 
         <div className="flex flex-col gap-[25px]">
           <motion.h5
-            className="text-[38px] font-bold leading-[51.3px]"
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            key={`results-comment-${isMobile ? "mobile" : "desktop"}`}
+            className="text-2xl lg:text-[38px] font-bold lg:leading-[51.3px]"
+            initial={isMobile ? { y: 50, opacity: 0 } : { x: 50, opacity: 0 }}
+            whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -119,16 +129,17 @@ const Results = ({ project }: ResultsProps) => {
           </motion.h5>
 
           <motion.div
+            key={`results-client-${isMobile ? "mobile" : "desktop"}`}
             className="flex flex-col gap-[7px]"
-            initial={{ x: -30, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            initial={isMobile ? { y: -30, opacity: 0 } : { x: -30, opacity: 0 }}
+            whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <p className="text-xl font-bold leading-[22px]">
+            <p className="text-base lg:text-xl font-bold leading-[22px]">
               {project.client_name}
             </p>
-            <p className="text-base font-normal leading-[25.6px]">
+            <p className="text-sm lg:text-base font-normal leading-[25.6px]">
               {project.client_company_name}
             </p>
           </motion.div>

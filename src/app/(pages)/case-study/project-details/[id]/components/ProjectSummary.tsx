@@ -27,11 +27,11 @@ const ProjectSummary = ({ project }: ProjectSummaryProps) => {
 
   return (
     <section className="flex flex-col gap-[45px] px-4 md:px-16 xl:px-[90px] ">
-      <div className="w-full flex justify-between text-white">
+      <div className="w-full flex flex-col lg:flex-row justify-between text-white">
         {/* Left Side */}
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2.5 mb-12 lg:mb-0 text-center lg:text-start">
           <motion.h2
-            className="text-5xl font-bold"
+            className="text-4xl lg:text-5xl font-bold"
             initial={{ y: -60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -39,7 +39,7 @@ const ProjectSummary = ({ project }: ProjectSummaryProps) => {
             {project.project_name}
           </motion.h2>
           <motion.p
-            className="max-w-xl text-lg font-normal leading-[23.04px] -tracking-[0.72px]"
+            className="max-w-md 2xl:max-w-xl text-lg font-normal leading-[23.04px] -tracking-[0.72px] mx-auto"
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -49,7 +49,7 @@ const ProjectSummary = ({ project }: ProjectSummaryProps) => {
         </div>
 
         {/* Right Side */}
-        <div className="flex flex-col gap-4 w-[344px] text-base font-normal -tracking-[0.64px] justify-center">
+        <div className="flex flex-col gap-4 w-full max-w-[344px] text-base font-normal -tracking-[0.64px] justify-center mx-auto lg:mx-0">
           <motion.div
             className="flex justify-between"
             initial={{ y: -60, opacity: 0 }}
@@ -83,7 +83,7 @@ const ProjectSummary = ({ project }: ProjectSummaryProps) => {
           alt={`${project.project_name} thumbnail`}
           height={717}
           width={1260}
-          className="w-full h-[713.17px] object-center rounded-[25px]"
+          className="w-full h-[450px] lg:h-[713.17px] object-fill rounded-[25px]"
           priority
         />
       </motion.div>

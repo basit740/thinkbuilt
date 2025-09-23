@@ -8,7 +8,6 @@ const Footer = () => {
       <div className="px-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
           <div className="flex flex-col items-center justify-start mt-6 sm:mt-12 md:mt-14">
-            
             <Image
               src="/images/Group.png"
               alt="ThinkBuilt Solutions Logo"
@@ -26,7 +25,8 @@ const Footer = () => {
                   key={icon.id}
                   href={icon.href}
                   target="_blank"
-                  rel="noopener noreferrer">
+                  rel="noopener noreferrer"
+                >
                   <Image
                     src={icon.src}
                     alt={icon.alt}
@@ -42,7 +42,8 @@ const Footer = () => {
           {footerData.map((section, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-start mt-6 sm:mt-8 md:mt-10">
+              className="flex flex-col items-center justify-start mt-6 sm:mt-8 md:mt-10"
+            >
               <ul className="mt-4 flex flex-col items-center gap-2.5">
                 <li className="text-xl sm:text-2xl mb-2.5 font-semibold">
                   {section.title}
@@ -51,7 +52,8 @@ const Footer = () => {
                   <li key={itemIndex}>
                     <a
                       href={item.href}
-                      className="hover:underline text-sm sm:text-base">
+                      className="hover:underline text-sm sm:text-base"
+                    >
                       {item.name}
                     </a>
                   </li>
@@ -84,7 +86,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 sm:mt-10 px-8">
-          <p className="text-sm sm:text-base">
+          <p className="text-sm sm:text-base text-center md:text-start">
             ©ThinkBuiltSolutions. All rights reserved.
           </p>
         </div>

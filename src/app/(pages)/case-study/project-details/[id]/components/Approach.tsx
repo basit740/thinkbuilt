@@ -1,8 +1,17 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 const Approach = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 500);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const approachData = [
     {
       id: 0,
@@ -30,7 +39,7 @@ const Approach = () => {
     },
   ];
   return (
-    <section className="px-4 md:px-16 xl:px-[90px] py-[120px] flex flex-col gap-[55px]">
+    <section className="px-4 md:px-16 xl:px-[90px] py-16 lg:py-[120px] flex flex-col gap-8 lg:gap-[55px]">
       <motion.div
         className="flex gap-1.5 items-center"
         initial={{ y: -30, opacity: 0 }}
@@ -55,52 +64,59 @@ const Approach = () => {
         </h4>
       </motion.div>
 
-      <div className="flex flex-row gap-3 flex-wrap">
+      <div
+        className={`flex flex-row gap-3 flex-wrap ${
+          isMobile ? "items-center" : "items-start"
+        }`}
+      >
         {approachData.map((item, index) => {
           return (
             <motion.div
               key={index}
-              className="
-      h-[403.03px] w-[295.199px] rounded-[18px] flex justify-center items-center flex-col
-      "
-              style={{
-                backgroundImage: " url('/images/approach_card_bg.png')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
+              className={`${
+                isMobile ? "w-full" : "w-[295.199px]"
+              } relative rounded-[18px] overflow-hidden`}
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{
                 duration: 0.6,
                 ease: "easeOut",
-                delay: index * 0.2
+                delay: index * 0.2,
               }}
               viewport={{ once: true, amount: 0.3 }}
             >
               <Image
-                src={`${item.icon}`}
-                alt={`${item.title}`}
-                height={104.68}
-                width={107.55}
-                className="h-[104.68px] w-full"
+                src="/images/approach_card_bg.png"
+                alt="background"
+                width={295.199}
+                height={403.03}
+                className="w-full :w-[295.199px] h-auto rounded-[18px]"
               />
+              <div className="absolute inset-0 flex justify-center items-center flex-col">
+                <Image
+                  src={`${item.icon}`}
+                  alt={`${item.title}`}
+                  height={104.68}
+                  width={107.55}
+                  className="h-[104.68px] w-full"
+                />
 
-              <h6 className="text-[32px] font-medium leading-normal tracking-[-0.64px] text-[#1D9ED9]">
-                {item.title}
-              </h6>
+                <h6 className="text-[32px] font-medium leading-normal tracking-[-0.64px] text-[#1D9ED9]">
+                  {item.title}
+                </h6>
 
-              <Image
-                src="/icons/Line.svg"
-                alt="line"
-                height={1}
-                width={93.441}
-                className="mt-[8.11px] mb-[17.49px]"
-              />
+                <Image
+                  src="/icons/Line.svg"
+                  alt="line"
+                  height={1}
+                  width={93.441}
+                  className="mt-[8.11px] mb-[17.49px]"
+                />
 
-              <p className="text-lg font-normal leading-[26px] max-w-48 text-center">
-                {item.desc}
-              </p>
+                <p className="text-lg font-normal leading-[26px] max-w-[280px] md:max-w-48 text-center">
+                  {item.desc}
+                </p>
+              </div>
             </motion.div>
           );
         })}

@@ -1,14 +1,26 @@
 "use client";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "motion/react";
 
 const Carousel = ({ images }: { images: string[] }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
+    breakpoints: {
+      '(min-width: 768px)': { slidesToScroll: 2 },
+    },
   });
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -24,10 +36,10 @@ const Carousel = ({ images }: { images: string[] }) => {
         <div className="flex gap-[25px]">
           {images.map((src, index) => (
             <motion.div
-              className="relative flex-[0_0_calc(50%-12.5px)] min-w-0"
-              key={index}
-              initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
+              className="relative flex-[0_0_100%] md:flex-[0_0_calc(50%-12.5px)] min-w-0"
+              key={`carousel-${index}-${isMobile ? 'mobile' : 'desktop'}`}
+              initial={isMobile ? { y: index % 2 === 0 ? -50 : 50, opacity: 0 } : { x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
+              whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
               transition={{
                 duration: 0.6,
                 ease: "easeOut",

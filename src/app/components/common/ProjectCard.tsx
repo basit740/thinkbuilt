@@ -26,7 +26,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="flex flex-col rounded-[59px] md:flex-row gap-3 py-[5.81px] pl-[5.79px] pr-[10.71px] justify-center items-center bg-black/83">
+        <div className="flex flex-col w-full rounded-2xl md:rounded-[59px] md:flex-row gap-3 py-3 md:py-[5.81px] pl-[5.79px] pr-[10.71px] justify-center items-center bg-black/83">
           {/* Left Side */}
           <div className="flex flex-col sm:flex-row gap-[10.83px] justify-center items-center">
             <Image
@@ -34,12 +34,21 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               alt={project.project_name}
               height={94}
               width={94}
-              className="rounded-full w-[47px] lg:w-[94px] h-[47] lg:h-[94px] object-cover"
+              className="rounded-full w-[47px] lg:w-[94px] h-[47] lg:h-[94px] object-cover hidden md:block"
             />
             <div className="flex flex-col justify-center items-center sm:items-start gap-[11px]">
-              <p className="font-bold text-[22px] leading-[24px] tracking-[0.4px]">
-                {project.project_name}
-              </p>
+              <div className="flex justify-center items-center gap-2">
+                <Image
+                  src={project?.company_logo_url || "/images/ellipse.png"}
+                  alt={project.project_name}
+                  height={94}
+                  width={94}
+                  className="rounded-full w-[47px] lg:w-[94px] h-[47] lg:h-[94px] object-cover md:hidden"
+                />
+                <p className="font-bold text-[22px] leading-[24px] tracking-[0.4px]">
+                  {project.project_name}
+                </p>
+              </div>
               <p className="font-normal text-base leading-[24px] tracking-[0px] text-white/[0.77] text-center sm:text-start max-w-3xs line-clamp-2">
                 {project.project_summary}
               </p>

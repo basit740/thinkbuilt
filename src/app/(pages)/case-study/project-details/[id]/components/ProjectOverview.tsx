@@ -1,6 +1,6 @@
 import Carousel from "@/app/components/ui/Carousel";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 interface Project {
@@ -18,6 +18,8 @@ interface ProjectOverviewProps {
 }
 
 const ProjectOverview = ({ project }: ProjectOverviewProps) => {
+  const [isMobile, setIsMobile] = useState(false);
+
   const formatCompletionDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -26,43 +28,55 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
     });
   };
 
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
-    <section className="mt-[120px] mb-[80px] flex flex-col gap-10 px-4 md:px-16 xl:px-[90px] ">
+    <section className="mt-16 lg:mt-[120px] mb-10 lg:mb-[80px] flex flex-col gap-10 px-4 md:px-16 xl:px-[90px] ">
       {/* Project Overview */}
-      <div className="flex flex-col lg:flex-row gap-[56px] justify-between">
+      <div className="flex flex-col lg:flex-row gap-9 lg:gap-[56px] justify-between">
         {/* Overview */}
         <motion.div
-          className="flex flex-row gap-[13.8px] items-start"
-          initial={{ x: -50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          key={`overview-${isMobile ? 'mobile' : 'desktop'}`}
+          className="flex flex-row gap-2 lg:gap-[13.8px] items-start"
+          initial={isMobile ? { y: -50, opacity: 0 } : { x: -50, opacity: 0 }}
+          whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+            className="w-20 h-14 lg:w-[37px] lg:h-[37px] lg:mt-2"
           >
             <Image
               src="/icons/flower_icon.svg"
               alt="flower-icon"
               width={37}
               height={37}
+              className="w-20 h-14 lg:w-[37px] lg:h-[37px]"
             />
           </motion.div>
           <div className="flex flex-col gap-3 lg:gap-[6.51px]">
             <motion.h2
-              className="text-[58px] font-bold leading-[56px] w-full lg:max-w-[255px]"
-              initial={{ x: -30, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
+              key={`overview-title-${isMobile ? 'mobile' : 'desktop'}`}
+              className="text-5xl lg:text-[58px] font-bold leading-[56px] w-full lg:max-w-[255px]"
+              initial={isMobile ? { y: -30, opacity: 0 } : { x: -30, opacity: 0 }}
+              whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
               viewport={{ once: true, amount: 0.3 }}
             >
               Project <span className="text-[#1D9ED9]">Overview</span>
             </motion.h2>
             <motion.p
+              key={`overview-desc-${isMobile ? 'mobile' : 'desktop'}`}
               className="w-full lg:max-w-xs"
-              initial={{ x: -30, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
+              initial={isMobile ? { y: -30, opacity: 0 } : { x: -30, opacity: 0 }}
+              whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
               viewport={{ once: true, amount: 0.3 }}
             >
@@ -94,7 +108,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div
-            className="flex gap-1.5 items-center"
+            className="flex gap-1.5 w-full items-center"
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -112,7 +126,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
                 height={20}
               />
             </motion.div>
-            <h4 className="text-[34px] font-bold leading-[56px]">
+            <h4 className="text-3xl lg:text-[34px] font-bold leading-[56px]">
               Technology Used
             </h4>
           </motion.div>
@@ -151,16 +165,18 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
 
         {/* Duration */}
         <motion.div
+          key={`duration-${isMobile ? 'mobile' : 'desktop'}`}
           className="flex flex-col gap-[14.08px] justify-start items-center"
-          initial={{ x: 50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={isMobile ? { y: 50, opacity: 0 } : { x: 50, opacity: 0 }}
+          whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div
-            className="flex gap-1.5 items-center"
-            initial={{ x: 30, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            key={`duration-title-${isMobile ? 'mobile' : 'desktop'}`}
+            className="flex gap-1.5 items-center w-full"
+            initial={isMobile ? { y: 30, opacity: 0 } : { x: 30, opacity: 0 }}
+            whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -176,13 +192,16 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
                 height={20}
               />
             </motion.div>
-            <h4 className="text-[34px] font-bold leading-[56px]">Duration</h4>
+            <h4 className="text-3xl lg:text-[34px] font-bold leading-[56px]">
+              Duration
+            </h4>
           </motion.div>
 
           <motion.div
-            className="px-[17px] py-[15px] rounded-[18px] border-2 border-[#B9B9B9] text-lg font-normal leading-[32.04px] tracking-[0.36px]"
-            initial={{ x: 30, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            key={`duration-content-${isMobile ? 'mobile' : 'desktop'}`}
+            className="w-full px-[17px] py-[15px] rounded-[18px] border-2 border-[#B9B9B9] text-lg font-normal leading-[32.04px] tracking-[0.36px]"
+            initial={isMobile ? { y: 30, opacity: 0 } : { x: 30, opacity: 0 }}
+            whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
             viewport={{ once: true, amount: 0.3 }}
           >

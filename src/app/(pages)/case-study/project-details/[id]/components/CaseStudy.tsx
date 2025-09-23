@@ -1,21 +1,31 @@
 import ProjectCard from "@/app/components/common/ProjectCard";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useGetProjectsQuery } from "@/store/api/projectsApi";
 import { motion } from "motion/react";
 
 const CaseStudy = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const params = useParams();
   const id = params.id as string;
 
   const { data: projectsData } = useGetProjectsQuery({ page: 1, limit: 100 });
   const projects = projectsData?.projects || [];
-  const filteredProjects = projects.filter(project => project._id !== id);
-  const randomProjects = filteredProjects.sort(() => 0.5 - Math.random()).slice(0, 2);
+  const filteredProjects = projects.filter((project) => project._id !== id);
+  const randomProjects = filteredProjects
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 2);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <section className="px-4 md:px-16 xl:px-[90px] pb-[76px] flex flex-col gap-10">
+    <section className="px-4 md:px-16 xl:px-[90px] pb-12 lg:pb-[76px] flex flex-col gap-10">
       <div className="w-full flex flex-col items-center">
         <motion.span
           className="text-white text-lg font-normal leading-[150%] italic"
@@ -52,13 +62,13 @@ const CaseStudy = () => {
         </motion.h1>
 
         <motion.div
-          className="text-white/[0.86] text-base md:text-xl font-normal leading-[150%] text-center mt-[25] overflow-hidden px-4 md:px-0 h-16"
+          className="text-white/[0.86] text-base md:text-xl font-normal leading-[150%] text-center mt-[25] overflow-hidden px-4 md:px-0 lg:h-16"
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <p className="max-w-[613px]">
+          <p className="w-full max-w-[613px]">
             Discover how we&apos;ve helped non-tech business owners transform
             their ideas into powerful digital solutions.
           </p>
@@ -67,7 +77,7 @@ const CaseStudy = () => {
 
       {/* Project Cards */}
       <motion.div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-[21px] justify-items-center max-w-[1280px] mx-auto"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-[21px] justify-items-center max-w-[1280px] md:mx-auto"
         initial={{ y: 50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
@@ -75,15 +85,22 @@ const CaseStudy = () => {
       >
         {randomProjects.map((project, index) => (
           <motion.div
-            key={project._id}
-            initial={{ x: index === 0 ? -50 : 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            key={`casestudy-card-${project._id}-${
+              isMobile ? "mobile" : "desktop"
+            }`}
+            initial={
+              isMobile
+                ? { y: index === 0 ? -50 : 50, opacity: 0 }
+                : { x: index === 0 ? -50 : 50, opacity: 0 }
+            }
+            whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
             transition={{
               duration: 0.6,
               ease: "easeOut",
-              delay: 0.8 + (index * 0.2)
+              delay: 0.8 + index * 0.2,
             }}
             viewport={{ once: true, amount: 0.3 }}
+            className="w-full"
           >
             <ProjectCard project={project} />
           </motion.div>
