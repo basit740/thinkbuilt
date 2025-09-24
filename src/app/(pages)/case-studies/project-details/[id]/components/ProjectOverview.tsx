@@ -108,7 +108,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div
-            className="flex gap-1.5 w-full items-center"
+            className="flex gap-1.5 w-full items-center justify-start lg:justify-center"
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}

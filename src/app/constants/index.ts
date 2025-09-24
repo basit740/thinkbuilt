@@ -5,7 +5,7 @@ export const NAV_LINKS = [
   { href: "#our-story", key: "Our Story", label: "Our Story" },
   { href: "#testimonials", key: "Testimonials", label: "Testimonials" },
   { href: "#why-us", key: "Why Choose Us", label: "Why Choose Us" },
-  { href: "case-study", key: "Case Study", label: "Case Study" },
+  { href: "case-studies", key: "Case Studies", label: "Case Studies" },
 ];
 
 // CAMP SECTION

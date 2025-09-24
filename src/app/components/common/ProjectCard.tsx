@@ -56,7 +56,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
 
           {/* Right Side */}
-          <Link href={`/case-study/project-details/${project._id}`}>
+          <Link href={`/case-studies/project-details/${project._id}`}>
             <div className="flex justify-center items-center rounded-[30px] bg-[#1D9ED9] w-[156px] h-[46.291px] cursor-pointer border border-white/[0.60] hover:bg-[#1678a1] transition-colors">
               <div className="flex flex-row items-center gap-[7px]">
                 <p className="font-medium text-base leading-[30px] text-white">
