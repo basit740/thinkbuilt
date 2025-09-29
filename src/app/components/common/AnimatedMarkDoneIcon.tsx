@@ -15,7 +15,7 @@ const checkmarkVariants = {
   markGlow: {
     pathLength: 1,
     opacity: 1,
-    transition: { duration: 0.7 },
+    transition: { duration: 0.5 },
   },
 };
 

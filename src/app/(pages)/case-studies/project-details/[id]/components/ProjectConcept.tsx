@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { WaveAnimation } from "./WaveAnimation";
 import { AnimatedMarkDoneIcon } from "@/app/components/common/AnimatedMarkDoneIcon";
@@ -46,8 +46,27 @@ const markIconVariants = {
 // --- COMPONENT ---
 
 const ProjectConcept = ({ project }: ProjectConceptProps) => {
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.5 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isInView && !isMobile) {
+      setActiveIndex(0);
+    }
+  }, [isInView, isMobile]);
+
   return (
     <section
+      ref={sectionRef}
       className="px-4 md:px-16 xl:px-[90px] py-[38px] w-full flex flex-col gap-0 lg:gap-[50px] "
       style={{
         backgroundImage: " url('/images/project_concept_bg.png')",
@@ -74,7 +93,18 @@ const ProjectConcept = ({ project }: ProjectConceptProps) => {
         </h4>
       </div>
 
-      <div className="mt-[50px]">
+      <div className={`mt-[50px] ${isMobile ? "hidden" : "flex flex-col"}`}>
+        {project.project_concepts.map((concept, index) => (
+          <ConceptItem
+            key={index}
+            concept={concept}
+            isActive={index === activeIndex}
+            onComplete={() => setActiveIndex(index + 1)}
+          />
+        ))}
+      </div>
+
+      <div className={`mt-[50px] ${isMobile ? "flex flex-col" : "hidden"}`}>
         {project.project_concepts.map((concept, index) => (
           <ConceptItem key={index} concept={concept} />
         ))}
@@ -85,31 +115,40 @@ const ProjectConcept = ({ project }: ProjectConceptProps) => {
 
 // --- SINGLE CONCEPT ITEM COMPONENT (for cleaner logic) ---
 
-const ConceptItem = ({ concept }: { concept: ProjectConcept }) => {
+const ConceptItem = ({
+  concept,
+  isActive,
+  onComplete,
+}: {
+  concept: ProjectConcept;
+  isActive?: boolean;
+  onComplete?: () => void;
+}) => {
   const controls = useAnimation();
   const ref = useRef<HTMLDivElement>(null);
-  // Trigger animation when the component is 50% in view, and only run it once
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   useEffect(() => {
     // Define the animation sequence using async/await
     const sequence = async () => {
       // Slight delay after section is in view and data loaded
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, 400));
       // 1. Start the 'thinkGlow' state and wait for its animation to complete
       await controls.start("thinkGlow");
       // Slight delay before starting wave animation
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 300));
       // 2. Start 'lightTravel' and wait for it to complete
       await controls.start("lightTravel");
+      // Call onComplete to start the next concept when markGlow starts
+      if (onComplete) onComplete();
       // 3. Start 'markGlow' and wait for it to complete
       await controls.start("markGlow");
     };
 
-    if (isInView) {
+    if (isActive !== undefined ? isActive : isInView) {
       sequence();
     }
-  }, [isInView, controls]);
+  }, [isActive, isInView, controls, onComplete]);
 
   return (
     <div ref={ref} className="flex flex-col lg:flex-row gap-2 mb-8">
