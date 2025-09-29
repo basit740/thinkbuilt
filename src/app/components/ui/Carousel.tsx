@@ -10,9 +10,7 @@ const Carousel = ({ images }: { images: string[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     slidesToScroll: 1,
-    breakpoints: {
-      '(min-width: 768px)': { slidesToScroll: 2 },
-    },
+    align: "start"
   });
 
   useEffect(() => {
@@ -33,10 +31,10 @@ const Carousel = ({ images }: { images: string[] }) => {
   return (
     <div className="relative">
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-[25px]">
+        <div className="flex">
           {images.map((src, index) => (
             <motion.div
-              className="relative flex-[0_0_100%] md:flex-[0_0_calc(50%-12.5px)] min-w-0"
+              className={`relative min-w-0 ${isMobile ? 'flex-[0_0_100%]' : 'flex-[0_0_calc(50%-12.5px)] mr-[25px]'}`}
               key={`carousel-${index}-${isMobile ? 'mobile' : 'desktop'}`}
               initial={isMobile ? { y: index % 2 === 0 ? -50 : 50, opacity: 0 } : { x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
               whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
