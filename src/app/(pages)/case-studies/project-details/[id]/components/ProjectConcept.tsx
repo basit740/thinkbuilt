@@ -2,6 +2,8 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { WaveAnimation } from "./WaveAnimation";
+import { AnimatedMarkDoneIcon } from "@/app/components/common/AnimatedMarkDoneIcon";
+import { AnimatedThinkIcon } from "@/app/components/common/AnimatedThinkIcon";
 
 // --- TYPE DEFINITIONS ---
 interface ProjectConcept {
@@ -40,7 +42,6 @@ const markIconVariants = {
     filter: "drop-shadow(0 0 10px #1D9ED9)",
   },
 };
-
 
 // --- COMPONENT ---
 
@@ -94,11 +95,11 @@ const ConceptItem = ({ concept }: { concept: ProjectConcept }) => {
     // Define the animation sequence using async/await
     const sequence = async () => {
       // Slight delay after section is in view and data loaded
-      await new Promise(resolve => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, 600));
       // 1. Start the 'thinkGlow' state and wait for its animation to complete
       await controls.start("thinkGlow");
       // Slight delay before starting wave animation
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       // 2. Start 'lightTravel' and wait for it to complete
       await controls.start("lightTravel");
       // 3. Start 'markGlow' and wait for it to complete
@@ -133,13 +134,7 @@ const ConceptItem = ({ concept }: { concept: ProjectConcept }) => {
           transition={{ duration: 0.5 }}
           className="h-20 w-20 mt-[-110px]"
         >
-          <Image
-            src="/icons/think_icon.svg"
-            alt="idea-icon"
-            height={80}
-            width={80}
-            className="h-full w-full"
-          />
+          <AnimatedThinkIcon controls={controls} />
         </motion.div>
 
         <WaveAnimation controls={controls} />
@@ -151,44 +146,32 @@ const ConceptItem = ({ concept }: { concept: ProjectConcept }) => {
           transition={{ duration: 0.5 }}
           className="h-[69px] w-[69px] mt-[116px]"
         >
-          <Image
-            src="/icons/mark_done_icon.svg"
-            alt="mark-done"
-            height={69}
-            width={69}
-            className="h-full w-full"
-          />
+          <AnimatedMarkDoneIcon controls={controls} />
         </motion.div>
       </div>
 
       {/* Mobile Center View */}
-            <div className="flex flex-col lg:hidden gap-[10px] items-center">
-              <div className="flex flex-col h-auto mb-[16px] ml-[72px]">
-                <Image
-                  src="/icons/think_icon.svg"
-                  alt="idea-icon"
-                  height={40}
-                  width={40}
-                  className="h-10 min-w-10 w-10 min-h-10"
-                />
-              </div>
-              <Image
-                src="/icons/wave_icon.svg"
-                alt="wave-icon"
-                height={150}
-                width={200}
-                className="min-w-[200px] min-h-[150px] transform rotate-90"
-              />
-              <div className="flex flex-col h-auto justify-center mt-5 mr-[72px]">
-                <Image
-                  src="/icons/mark_done_icon.svg"
-                  alt="mark-done"
-                  height={40}
-                  width={40}
-                  className="h-10 min-w-10 w-10 min-h-10"
-                />
-              </div>
-            </div>
+      <div className="flex flex-col lg:hidden gap-4 items-center">
+        <motion.div
+          initial="initial"
+          animate={controls}
+          variants={thinkIconVariants} // Glow for mobile
+          className="h-14 w-14 ml-[85px]"
+        >
+          <AnimatedThinkIcon controls={controls} />
+        </motion.div>
+
+        <WaveAnimation controls={controls} isMobile={true} />
+
+        <motion.div
+          initial="initial"
+          animate={controls}
+          variants={markIconVariants} // Glow for mobile
+          className="h-14 w-14 mr-[85px]"
+        >
+          <AnimatedMarkDoneIcon controls={controls} />
+        </motion.div>
+      </div>
 
       {/* Right Side: Solution */}
       <div className="flex h-auto">

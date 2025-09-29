@@ -3,7 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // This is the string you copied from the d="..." attribute in your wave_icon.svg file.
-const pathData = "M0 1H125.122C137.272 1 147.122 10.8497 147.122 23V87C147.122 99.1503 156.971 109 169.122 109H300";
+const pathData =
+  "M0 1H125.122C137.272 1 147.122 10.8497 147.122 23V87C147.122 99.1503 156.971 109 169.122 109H300";
 
 // Animation variants for the traveling light dot
 const lightDotVariants = {
@@ -21,40 +22,59 @@ interface WaveAnimationProps {
   isMobile?: boolean;
 }
 
-export const WaveAnimation = ({ controls, isMobile = false }: WaveAnimationProps) => {
+export const WaveAnimation = ({
+  controls,
+  isMobile = false,
+}: WaveAnimationProps) => {
   if (isMobile) {
+    // You can easily adjust the size by changing this scale value (e.g., 0.8 = 80% size)
+    const scale = 0.8;
+
+    // Calculate the new dimensions based on the scale factor
+    const mobileWidth = 110 * scale;
+    const mobileHeight = 300 * scale;
+
     return (
-      // Mobile View (Rotated)
-      <div className="relative w-[150px] h-[150px] flex justify-center items-center">
-        <svg
-          width="150"
-          height="150"
-          viewBox="0 0 110 300" // ViewBox is swapped for rotation
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="transform"
-        >
-          {/* We rotate the path itself within the SVG canvas */}
-          <path
-            d={pathData}
-            stroke="#1D9ED9"
-            strokeWidth="2"
-            pathLength="1" // Simplifies offset calculation
-            transform="translate(55, 150) rotate(-90) translate(-150, -55)"
-          />
-        </svg>
-        <motion.div
-          initial="initial"
-          animate={controls}
-          variants={lightDotVariants}
-          transition={{ duration: 2 }}
-          className="absolute w-2 h-2 bg-[#1D9ED9] rounded-full"
+      <div
+        className="relative"
+        style={{ width: mobileWidth, height: mobileHeight }}
+      >
+        <div
+          // The inner container is now scaled down using the transform property
+          className="absolute top-0 w-[300px] h-[110px]"
           style={{
-            filter: "drop-shadow(0 0 5px #1D9ED9)",
-            offsetPath: `path("${pathData}")`,
-            transform: "translate(55px, 150px) rotate(-90deg) translate(-150px, -55px)",
+            left: mobileWidth, // The left offset is also updated to match the new width
+            transform: `rotate(90deg) scale(${scale})`,
+            transformOrigin: "top left",
           }}
-        />
+        >
+          {/* The SVG and motion.div below are completely UNCHANGED, preserving the animation */}
+          <svg
+            width="300"
+            height="110"
+            viewBox="0 0 300 110"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d={pathData}
+              stroke="#1D9ED9"
+              strokeWidth="2"
+              pathLength="1"
+            />
+          </svg>
+          <motion.div
+            initial="initial"
+            animate={controls}
+            variants={lightDotVariants}
+            transition={{ duration: 3 }}
+            className="absolute top-0 left-0 w-2 h-2 bg-[#1D9ED9] rounded-full"
+            style={{
+              filter: "drop-shadow(0 0 5px #1D9ED9)",
+              offsetPath: `path("${pathData}")`,
+            }}
+          />
+        </div>
       </div>
     );
   }

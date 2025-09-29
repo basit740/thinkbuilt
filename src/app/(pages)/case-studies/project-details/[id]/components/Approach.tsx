@@ -64,11 +64,7 @@ const Approach = () => {
         </h4>
       </motion.div>
 
-      <div
-        className={`flex flex-row gap-3 flex-wrap ${
-          isMobile ? "items-center" : "items-start"
-        }`}
-      >
+      <div className={`flex flex-row gap-3 flex-wrap items-center justify-center`}>
         {approachData.map((item, index) => {
           return (
             <motion.div
