@@ -103,7 +103,7 @@ const Trusted = () => {
         className="w-full flex flex-col items-center"
       >
         <h1 className="text-white text-3xl md:text-[44px] font-normal leading-[130%] capitalize text-center">
-          <span className="text-white/46">Trusted by Founders Building</span>
+          <span className="text-white/80">Trusted by Founders Building</span>
           <br />
           <span className="font-medium my-[21px] flex  justify-center">
             <span className="text-[#1D9ED9]">&#123;</span>

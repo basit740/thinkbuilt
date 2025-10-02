@@ -75,7 +75,7 @@ const Review = () => {
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
         <h1 className="text-white text-4xl md:text-[48px] font-normal leading-[140%] capitalize text-center max-w-4xl mx-auto mb-6 sm:mb-8 lg:mb-12 mt-[20px]">
-          <span className="text-white/46">
+          <span className="text-white/80">
             What Founders Say After Working With
           </span>{" "}
           <br />

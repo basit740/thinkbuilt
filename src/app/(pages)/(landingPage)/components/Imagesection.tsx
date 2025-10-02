@@ -42,7 +42,7 @@ const Imagesection = () => {
           <span>You’ve Got the Vision.</span>
           <br />
           <span className="font-medium">
-            <span className="text-white/[0.46] font-normal">
+            <span className="text-white/80 font-normal">
               We Help You Bring It To Life —{" "}
             </span>
             <span className="text-[#1D9ED9]">&#123;</span>

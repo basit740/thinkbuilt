@@ -34,7 +34,7 @@ const Clarity = () => {
             className="w-full flex flex-col items-center lg:items-start"
           >
             <h1 className="text-white text-3xl md:text-[44px] font-normal leading-[130%] capitalize w-full text-center lg:text-left max-w-[525.56px]">
-              <span className="text-white/[0.46]">
+              <span className="text-white/80">
                 Before You Build Anything, Talk to Someone
               </span>
               <br />

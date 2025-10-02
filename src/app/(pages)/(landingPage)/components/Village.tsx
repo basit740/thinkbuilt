@@ -120,7 +120,7 @@ const Village = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
             className="  text-white text-3xl md:text-[44px] font-normal leading-[140%] capitalize text-center lg:text-left px-2 sm:px-0 mt-[30px]"
           >
-            <span className="text-white/[0.46]">From a Small Village to</span>{" "}
+            <span className="text-white/80">From a Small Village to</span>{" "}
             <br className="hidden sm:block" />
             <span className="font-medium">
               <span className="text-[#1D9ED9]">&#123;</span>

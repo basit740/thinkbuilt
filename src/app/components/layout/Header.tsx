@@ -1,16 +1,18 @@
+//* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { NAV_LINKS } from "../../constants/index";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
 import { Menu } from "lucide-react";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleScroll = (e: any, href: any) => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     // Only handle scroll behavior for hash links (#)
     if (!href.startsWith("#")) {
       return; // Let Next.js Link handle navigation for non-hash links
@@ -44,11 +46,12 @@ const Header = () => {
   }, []);
 
   return (
-    <nav
-      className={`py-[10px] fixed top-0 left-0 w-full z-50 ${
-        scrolled ? "bg-black" : "bg-transparent"
-      }`}
-    >
+    <>
+      <nav
+        className={`py-[10px] fixed top-0 left-0 w-full z-[70] ${
+          scrolled ? "bg-black" : "bg-transparent"
+        }`}
+      >
       <div className="flex justify-between relative items-center xl:px-[10%] px-4 mt-[10px]">
         <Link href="/">
           <Image
@@ -89,10 +92,22 @@ const Header = () => {
             }
           />
         </div>
-        <Menu size={32} color="white" strokeWidth={2} className="lg:hidden" />
+        <Menu
+          size={32}
+          color="white"
+          strokeWidth={2}
+          className="lg:hidden cursor-pointer"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
       </div>
       <div className=" border-t border-white  xl:ml-[10%] xl:mr-[10%] ml-[5%] mr-[5%] mt-[15.18px]"></div>
     </nav>
+    <Sidebar
+      isOpen={isSidebarOpen}
+      onClose={() => setIsSidebarOpen(false)}
+      handleScroll={handleScroll}
+    />
+    </>
   );
 };
 

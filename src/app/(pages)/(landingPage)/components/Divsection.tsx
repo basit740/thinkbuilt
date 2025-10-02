@@ -22,7 +22,7 @@ const Divsection = () => {
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
         <h1 className="text-3xl  md:text-[44px] font-medium leading-[130%] capitalize mt-[20px] text-center">
-          <span className="text-white/[0.46] font-normal">
+          <span className="text-white/80 font-normal">
             What We Help <span className="text-white">You</span>
           </span>{" "}
           <span className="text-[#1D9ED9]">&#123;</span>Build
