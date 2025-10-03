@@ -64,7 +64,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
           <div className="flex flex-col gap-3 lg:gap-[6.51px]">
             <motion.h2
               key={`overview-title-${isMobile ? 'mobile' : 'desktop'}`}
-              className="text-5xl lg:text-[58px] font-bold leading-[56px] w-full lg:max-w-[255px]"
+              className="text-white text-5xl lg:text-[58px] font-bold leading-[56px] w-full lg:max-w-[255px]"
               initial={isMobile ? { y: -30, opacity: 0 } : { x: -30, opacity: 0 }}
               whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -126,7 +126,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
                 height={20}
               />
             </motion.div>
-            <h4 className="text-3xl lg:text-[34px] font-bold leading-[56px]">
+            <h4 className="text-white text-3xl lg:text-[34px] font-bold leading-[56px]">
               Technology Used
             </h4>
           </motion.div>
@@ -192,7 +192,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
                 height={20}
               />
             </motion.div>
-            <h4 className="text-3xl lg:text-[34px] font-bold leading-[56px]">
+            <h4 className="text-white text-3xl lg:text-[34px] font-bold leading-[56px]">
               Duration
             </h4>
           </motion.div>
