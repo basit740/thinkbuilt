@@ -39,7 +39,7 @@ const Approach = () => {
     },
   ];
   return (
-    <section className="px-4 md:px-16 xl:px-[90px] py-16 lg:py-[120px] flex flex-col gap-8 lg:gap-[55px]">
+    <section className="text-white px-4 md:px-16 xl:px-[90px] py-16 lg:py-[120px] flex flex-col gap-8 lg:gap-[55px]">
       <motion.div
         className="flex gap-1.5 items-center"
         initial={{ y: -30, opacity: 0 }}

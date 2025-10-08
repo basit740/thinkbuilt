@@ -81,7 +81,7 @@ const Projects = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center px-6 md:px-16 xl:px-[90px] pt-[70.61px] pb-[99.9px] gap-[55.36px]">
+    <div className="text-white flex flex-col justify-center items-center px-6 md:px-16 xl:px-[90px] pt-[70.61px] pb-[99.9px] gap-[55.36px]">
       <div className="w-full gap-[21px] grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-center items-center">
         {projects.map((project, index) => (
           <motion.div

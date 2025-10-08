@@ -141,7 +141,7 @@ const Village = () => {
                 : { opacity: 0, x: isMediumUp ? 80 : 0, y: isMediumUp ? 0 : 80 }
             }
             transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }}
-            className="mt-[22.13] text-base md:text-lg font-normal leading-[150%]  text-center lg:text-left max-w-md"
+            className="text-white mt-[22.13] text-base md:text-lg font-normal leading-[150%]  text-center lg:text-left max-w-md"
           >
             I’m Basit Ali — Web Designer, Tutor, and Founder of ThinkBuilt
             Solutions. From humble beginnings to building 7-figure platforms, I

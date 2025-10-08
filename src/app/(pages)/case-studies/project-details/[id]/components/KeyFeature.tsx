@@ -21,7 +21,7 @@ const KeyFeature = ({ project }: KeyFeatureProps) => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
   return (
-    <section className="px-4  xl:px-[69px]">
+    <section className="text-white px-4  xl:px-[69px]">
       <motion.div
         className="flex w-full h-[600px] lg:h-[848.87px] rounded-[9px] justify-end items-end"
         style={{

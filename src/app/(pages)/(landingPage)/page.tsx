@@ -11,7 +11,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <div className="relative min-h-screen">
+      <div className="relative min-h-screen bg-black">
         <Image
           src="/images/hero_bottom_bg.png"
           alt="hero-background"

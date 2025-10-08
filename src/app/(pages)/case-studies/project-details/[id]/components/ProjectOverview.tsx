@@ -74,7 +74,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
             </motion.h2>
             <motion.p
               key={`overview-desc-${isMobile ? 'mobile' : 'desktop'}`}
-              className="w-full lg:max-w-xs"
+              className="text-white w-full lg:max-w-xs"
               initial={isMobile ? { y: -30, opacity: 0 } : { x: -30, opacity: 0 }}
               whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
@@ -199,7 +199,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
 
           <motion.div
             key={`duration-content-${isMobile ? 'mobile' : 'desktop'}`}
-            className="w-full px-[17px] py-[15px] rounded-[18px] border-2 border-[#B9B9B9] text-lg font-normal leading-[32.04px] tracking-[0.36px]"
+            className="text-white w-full px-[17px] py-[15px] rounded-[18px] border-2 border-[#B9B9B9] text-lg font-normal leading-[32.04px] tracking-[0.36px]"
             initial={isMobile ? { y: 30, opacity: 0 } : { x: 30, opacity: 0 }}
             whileInView={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}

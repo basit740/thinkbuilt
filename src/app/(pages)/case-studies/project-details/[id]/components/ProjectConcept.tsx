@@ -88,7 +88,7 @@ const ProjectConcept = ({ project }: ProjectConceptProps) => {
             height={20}
           />
         </motion.div>
-        <h4 className="text-2xl text-[34px] font-bold leading-[56px]">
+        <h4 className="text-white text-2xl text-[34px] font-bold leading-[56px]">
           {project.project_concept_name || "Problem & Solution"}
         </h4>
       </div>

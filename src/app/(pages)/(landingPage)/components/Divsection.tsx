@@ -21,7 +21,7 @@ const Divsection = () => {
         animate={helpYouInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -80 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
-        <h1 className="text-3xl  md:text-[44px] font-medium leading-[130%] capitalize mt-[20px] text-center">
+        <h1 className="text-white text-3xl  md:text-[44px] font-medium leading-[130%] capitalize mt-[20px] text-center">
           <span className="text-white/80 font-normal">
             What We Help <span className="text-white">You</span>
           </span>{" "}
@@ -29,7 +29,7 @@ const Divsection = () => {
           <span className="text-[#1D9ED9]">&#125;</span>
         </h1>
 
-        <p className="mt-[20.62] text-base md:text-xl font-normal leading-[150%] flex flex-col justify-center px-3 text-center">
+        <p className="text-white mt-[20.62] text-base md:text-xl font-normal leading-[150%] flex flex-col justify-center px-3 text-center">
           From strategy to execution — get the technical clarity and engineering
           <br className="hidden sm:inline" />
           support you need.

@@ -31,6 +31,24 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                const handleChange = () => {
+                  if (mediaQuery.matches) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                };
+                handleChange();
+                mediaQuery.addEventListener('change', handleChange);
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body cz-shortcut-listen="true">
         <Providers>{children}</Providers>

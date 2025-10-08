@@ -8,9 +8,10 @@ import Button from "../ui/Button";
 import { Menu } from "lucide-react";
 import Sidebar from "./Sidebar";
 
-const Header = () => {
+const NotFoundHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -48,6 +49,19 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    };
+
+    checkTheme();
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", checkTheme);
+
+    return () => mediaQuery.removeEventListener("change", checkTheme);
+  }, []);
+
   return (
     <>
       <nav
@@ -56,7 +70,18 @@ const Header = () => {
         }`}
       >
         <div className="flex justify-between relative items-center xl:px-[10%] px-4">
-          <Link href="/">
+          <Link href="/" className="block dark:hidden">
+            <Image
+              src="/images/light_mode_logo.png"
+              priority
+              alt="logo"
+              width={195.63}
+              height={44}
+              className="w-32 h-8 md:w-[195.63px] md:h-[44px]"
+            />
+          </Link>
+
+          <Link href="/" className="hidden dark:block">
             <Image
               src="/images/Group.png"
               priority
@@ -73,7 +98,7 @@ const Header = () => {
                 <Link
                   href={link.href}
                   onClick={(e) => handleScroll(e, link.href)}
-                  className="regular-16 text-gray-50 flexCenter cursor-pointer pb-1.5 transition-all hover:text-blue-400"
+                  className="text-[17px] font-semibold text-black dark:text-white flexCenter cursor-pointer pb-1.5 transition-all hover:text-blue-400"
                 >
                   {link.label}
                 </Link>
@@ -86,7 +111,7 @@ const Header = () => {
             <Button
               type="button"
               title="Get Started"
-              variant="py-[7px] px-[22px]"
+              variant="rounded-[167px] py-[7px] px-[22px] font-semibold text-white bg-[#1D9ED9] dark:bg-[#1D9ED9] dark:text-white border-2 dark:border border-white dark:border-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] dark:shadow-none"
               onClick={() =>
                 window.open(
                   "https://calendly.com/basit-thinkbuiltsol/technical-partner",
@@ -97,13 +122,13 @@ const Header = () => {
           </div>
           <Menu
             size={32}
-            color="white"
+            color={isDark ? "white" : "black"}
             strokeWidth={2}
             className="lg:hidden cursor-pointer"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           />
         </div>
-        <div className=" border-t border-white  xl:ml-[10%] xl:mr-[10%] ml-[5%] mr-[5%] mt-[15.18px]"></div>
+        <div className=" border-t-[1.5px] border-black dark:border-white  xl:ml-[12.5%] xl:mr-[12.5%] ml-[5%] mr-[5%] mt-[15.18px]"></div>
       </nav>
       <Sidebar
         isOpen={isSidebarOpen}
@@ -114,4 +139,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NotFoundHeader;

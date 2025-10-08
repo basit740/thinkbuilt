@@ -31,7 +31,7 @@ const Results = ({ project }: ResultsProps) => {
   }, []);
 
   return (
-    <section className="px-4 md:px-16 xl:px-[78px] py-20 lg:pb-[140px] lg:pt-[123px] flex flex-col">
+    <section className="text-white px-4 md:px-16 xl:px-[78px] py-20 lg:pb-[140px] lg:pt-[123px] flex flex-col">
       <motion.div
         className="flex gap-1.5 items-center"
         initial={{ y: -30, opacity: 0 }}

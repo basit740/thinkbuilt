@@ -39,7 +39,7 @@ const Imagesection = () => {
         className="w-full flex flex-col items-center"
       >
         <h1 className="mt-[60px] text-center text-3xl md:text-[44px] font-normal leading-[140%] capitalize ">
-          <span>You’ve Got the Vision.</span>
+          <span className="text-white">You’ve Got the Vision.</span>
           <br />
           <span className="font-medium">
             <span className="text-white/80 font-normal">
@@ -50,7 +50,7 @@ const Imagesection = () => {
             <span className="text-[#1D9ED9]">&#125;</span>.
           </span>
         </h1>
-        <p className="mt-[20.75] text-base md:text-xl font-normal leading-[150%] justify-center items-center px-3 text-center mb-[40px] sm:mb-[0px]">
+        <p className="text-white mt-[20.75] text-base md:text-xl font-normal leading-[150%] justify-center items-center px-3 text-center mb-[40px] sm:mb-[0px]">   
           Whether it&apos;s a SaaS, web app, or marketplace, we guide non-tech
           founders
           <br className="hidden sm:inline" />
