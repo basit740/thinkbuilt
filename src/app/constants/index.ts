@@ -250,7 +250,7 @@ export const footerData = [
   },
   {
     title: "Contact",
-    items: [{ name: "ThinkBuilt – 07468 435410", href: "tel:07468435410" }],
+    items: [{ name: "ThinkBuilt – +1 (303) 848-0263", href: "tel:+1 (303) 848-0263" }],
   },
 ];
 
